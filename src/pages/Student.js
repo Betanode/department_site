@@ -42,6 +42,13 @@ const Student = () => {
             </div>
           </div>
         </Link>
+        <Link className="link" to='/Students/PHD' style={{ textDecoration: 'none' }}>
+          <div className= "card jk">
+            <div className="card-bodystudent">
+              <p className="card-textsudent ttxt" style={{ color: "Red" }}>Mtech-PhD</p>
+            </div>
+          </div>
+        </Link>
       </div>
       <div className="pg">
         <Link className="link" to='/Students/PG2021' style={{ textDecoration: 'none' }}>

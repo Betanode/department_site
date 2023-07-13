@@ -14,7 +14,7 @@ import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-function createData(name, rollnumber, Research, supervisor, photo , b , m) {
+function createData(name, rollnumber, Research, supervisor, photo , b , m,a) {
   return {
     name,
     rollnumber,
@@ -25,6 +25,7 @@ function createData(name, rollnumber, Research, supervisor, photo , b , m) {
       {
         Btech: b,
         Mtech: m,
+        About:a,
       },
     ],
   };
@@ -68,6 +69,7 @@ function Row(props) {
                   <TableRow>
                     <TableCell>BTech</TableCell>
                     <TableCell>Mtech</TableCell>
+                    <TableCell>Research</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -75,6 +77,7 @@ function Row(props) {
                     <TableRow key={historyRow.Btech}>
                       <TableCell>{historyRow.Btech}</TableCell>
                       <TableCell>{historyRow.Mtech}</TableCell>
+                      <TableCell>{historyRow.About}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -94,6 +97,7 @@ Row.propTypes = {
       PropTypes.shape({
         Btech: PropTypes.string.isRequired,
         Mtech: PropTypes.string.isRequired,
+        About: PropTypes.string.isRequired,
       })
     ).isRequired,
     name: PropTypes.string.isRequired,
@@ -111,7 +115,8 @@ const rows = [
     'Dr. Ravi',
     'https://iitj.ac.in/uploaded_docs/dept_upload/cvl/Ananya_image-2022-04-07-16-33-pm.jpg',
     '-',
-    'MMM'
+    'MMM',
+    "About My project",
   ),
   createData(
     'Ashish Gupta',
@@ -120,7 +125,8 @@ const rows = [
     'Dr. Deepika Bhattu',
     'https://iitj.ac.in/uploaded_docs/dept_upload/cvl/Ashish%20Gupta_image-2022-04-07-18-39-pm.jpg',
     'Dr. B. R. Ambedkar National Institute of Technology Jalandhar (2017)',
-    '-'
+    '-',
+    "About My project",
   ),
   
 ];

@@ -21,6 +21,9 @@ import StudentPHD from './studentspage/StudentsPHD'
 import Preloader from './components/Preloader';
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Regular from './pages/Regular';
+import Smart from './pages/Smart';
+import Environ from './pages/Environ';
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -55,6 +58,9 @@ function App() {
                   <Route exact path="Students/PG2021" element={<StudentPG2021 />} />
                   <Route exact path="Students/PG2022" element={<StudentPG2022 />} />
                   <Route exact path="Students/PHD" element={<StudentPHD />} />
+                  <Route exact path="AcademicProgramms/regular" element={<Regular />} />
+                  <Route exact path="AcademicProgramms/smart" element={<Smart />} />
+                  <Route exact path="AcademicProgramms/environ" element={<Environ />} />
                   <Route exact path="Events" element={<Events />} />
                 </Routes>
                 <Footer />

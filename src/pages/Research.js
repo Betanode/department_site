@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState , useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -47,9 +48,7 @@ function a11yProps(index) {
 function createData(project, year, pi, copi, fundingagency,amount) {
   return { project, year, pi, copi, fundingagency,amount };
 }
-function createDatatwo(project, pi, copi, fundingagency,amount) {
-  return { project, pi, copi, fundingagency,amount };
-}
+
 const rowsone = [
   createData('Mechanical Response of sedimentary rocks under extreme conditions:Implications for cryogenic fracking', "2019-24", "Dr. Debanjan Guha Roy", "NA", "DST-Inspire","35.00" ),
   createData('Mechanical Response of sedimentary rocks under extreme conditions:Implications for cryogenic fracking', "2019-24", "Dr. Debanjan Guha Roy", "NA", "DST-Inspire","35.00" ),
@@ -71,31 +70,51 @@ const rowsone = [
   createData('Mechanical Response of sedimentary rocks under extreme conditions:Implications for cryogenic fracking', "2019-24", "Dr. Debanjan Guha Roy", "NA", "DST-Inspire","35.00" ),
   createData('Mechanical Response of sedimentary rocks under extreme conditions:Implications for cryogenic fracking', "2019-24", "Dr. Debanjan Guha Roy", "NA", "DST-Inspire","35.00" ),
 ];
-const rowstwo = [
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-  createDatatwo('Sand migration mitigation measures for the proposed haphasar solar park', "Dr. Pradeep K. Dammala", "Dr. A. K. Rathi, Dr. Debanjan Guha Roy", "SB Energy Pvt LTD"," 9.99" ),
-];
+
 
 export default function Research() {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
+  };
+  const [rowstwo, setRowstwo] = useState([]);
+  const [rowsone, setRowsone] = useState([]);
+
+  useEffect(() => {
+    loadData2();
+    loadData1();
+  }, []);
+
+  const loadData2 = async () => {
+    try {
+      const response = await fetch("http://localhost:3500/api/displaydatacompletedProject", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      });
+      const data = await response.json();
+      setRowstwo(data[0]);
+      console.log(data[0]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  const loadData1 = async () => {
+    try {
+      const response = await fetch("http://localhost:3500/api/displaydatacompletedProject", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      });
+      const data = await response.json();
+      setRowsone(data[0]);
+      console.log(data[0]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   };
   
   return (
@@ -151,7 +170,7 @@ export default function Research() {
                   
                   <TableCell align="center">PI</TableCell>
                   <TableCell align="center">CO PI</TableCell>
-                  <TableCell align="center">Funding Acency</TableCell>
+                  <TableCell align="center">Funding Agency</TableCell>
                   <TableCell align="center">Amount(in Lacs)</TableCell>
                 </TableRow>
               </TableHead>
@@ -162,13 +181,13 @@ export default function Research() {
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                     <TableCell component="th" scope="row">
-                      {row.project}
+                      {row.Project}
                     </TableCell>
 
-                    <TableCell align="center">{row.pi}</TableCell>
-                    <TableCell align="center">{row.copi}</TableCell>
-                    <TableCell align="center">{row.fundingagency}</TableCell>
-                    <TableCell align="center">{row.amount}</TableCell>
+                    <TableCell align="center">{row.PI}</TableCell>
+                    <TableCell align="center">{row.CoPI}</TableCell>
+                    <TableCell align="center">{row.FundingAgency}</TableCell>
+                    <TableCell align="center">{row.Amount}</TableCell>
                   </TableRow>
                 ))}
               </TableBody>

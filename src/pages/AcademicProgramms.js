@@ -1,6 +1,7 @@
 import React from 'react'
 import './AcademicProgramms.css'
 import photo from './ug_photo.jpeg'
+import {Link} from 'react-router-dom'
 const AcademicProgramms = () => {
   return (
     <div>
@@ -54,123 +55,18 @@ const AcademicProgramms = () => {
             <hr style={{ width: "15rem", height: "2rem", padding: "2rem" }} />
             <h1 className='btech_head'>ALL - UG -  PROGRAMS</h1>
           </div>
+          
           <div className='list'>
             <ul>
               <li className='el' style={{ fontSize: "20px", fontWeight: "400", padding: "10px" }}><b>B Tech [Regular] Civil and Infrastrcuture Engineering</b></li>
-              <div className='coursesUG'>
-                <u>
-                  <div className='mnv' style={{ backgroundColor: "white" }}>
-
-                    <div className='m'>
-                      <div className='btech_head_d'>
-                        <hr style={{ width: "15rem", height: "2rem", padding: "2rem" }} />
-                        <h1 className='btech_head'>Courses</h1>
-                      </div>
-                      <ul className='list'>
-                        <li className='el'>Structural Engineering</li>
-                        <li className='el'>Geotechnical Engineering</li>
-                        <li className='el'>Construction Technologies</li>
-                        <li className='el'>Reinforcement Concrete Design</li>
-                        <li className='el'>Smart Infrastructure Engineering</li>
-                        <li className='el'>Fluid Mechanics</li>
-                        <li className='el'>Solid Mechanics</li>
-                        <li className='el'>Advanced Structural Analysis</li>
-                        <li className='el'>Water Resource Engineering</li>
-                        <li className='el'>Environmental Engineering</li>
-                        <li className='el'>Geoinformatics</li>
-                      </ul>
-                    </div>
-                    <div className='v'>
-                      <div className='btech_head_d'>
-                        <hr style={{ width: "15rem", height: "2rem", padding: "2rem" }} />
-                        <h1 className='btech_head'>Electives</h1>
-                      </div>
-                      <ul className='list'>
-                        <li className='el'>AI/ML in Infrastructure Engineering</li>
-                        <li className='el'>Green Buildings</li>
-                      </ul>
-                    </div>
-
-                  </div>
-                </u>
-              </div>
+              <Link to = "/AcademicProgramms/regular" >List Of Courses</Link>
               <li className='el' style={{ fontSize: "20px", fontWeight: "400", padding: "10px" }}><b>B Tech Civil and Infrastrcuture Engineering with specialization in Environmental Engineering.</b></li>
-              <div className='coursesUG'>
-                <u>
-                  <div className='mnv' style={{ backgroundColor: "white" }}>
-
-                    <div className='m'>
-                      <div className='btech_head_d'>
-                        <hr style={{ width: "15rem", height: "2rem", padding: "2rem" }} />
-                        <h1 className='btech_head'>Courses</h1>
-                      </div>
-                      <ul className='list'>
-                        <li className='el'>Fate of Chemicals in the Environment</li>
-                        <li className='el'>Climate Change and Impact</li>
-                      </ul>
-                    </div>
-                    <div className='v'>
-                      <div className='btech_head_d'>
-                        <hr style={{ width: "15rem", height: "2rem", padding: "2rem" }} />
-                        <h1 className='btech_head'>Electives</h1>
-                      </div>
-                      <ul className='list'>
-                        <li className='el'>Remote Sensing and GIS for Environment Management</li>
-                        <li className='el'>Solid Waste Management</li>
-                        <li className='el'>Air Pollution and Control</li>
-                        <li className='el'>Advanced Wastewater Treatment</li>
-                        <li className='el'>Environment Economics and Management</li>
-                        <li className='el'>Environmental Imapct Assessment</li>
-                        <li className='el'>Machine Learning for Environmental Engineering</li>
-                        <li className='el'>Geomorphology</li>
-                        <li className='el'>GIS and Public Health</li>
-                        <li className='el'>Environmental Biotechnology</li>
-                        <li className='el'>Specialization Project (maximum 6 credits)</li>
-                      </ul>
-
-                    </div>
-
-                  </div>
-                </u>
-              </div>
+              <Link to = "/AcademicProgramms/environ" >List Of Courses</Link>
+              
+              
               <li className='el' style={{ fontSize: "20px", fontWeight: "400", padding: "10px" }}><b>B Tech Civil and Infrastrcuture Engineering with specialization in Smart Infrastructure.</b></li>
-              <div className='coursesUG'>
-                <u>
-                  <div className='mnv' style={{ backgroundColor: "white" }}>
-
-                    <div className='m'>
-                      <div className='btech_head_d'>
-                        <hr style={{ width: "15rem", height: "2rem", padding: "2rem" }} />
-                        <h1 className='btech_head'>Courses</h1>
-                      </div>
-                      <u>
-                        <ul className='list'>
-                          <li className='el'>Cyber Physical System</li>
-                          <li className='el'>Smart Infrastructure : Design and Simulation</li>
-
-                        </ul>
-                      </u>
-                    </div>
-                    <div className='v'>
-                      <div className='btech_head_d'>
-                        <hr style={{ width: "15rem", height: "2rem", padding: "2rem" }} />
-                        <h1 className='btech_head'>Electives</h1>
-                      </div>
-                      <ul className='list'>
-                        <li className='el'>Transmission Infrastructure</li>
-                        <li className='el'>Thermal and Nuclear Power inftrastructure engineering</li>
-                        <li className='el'>Surveillance and security of Infrastructure Engineering</li>
-                        <li className='el'>Digital Twin and Assest Management</li>
-                        <li className='el'>Introduction to power inffrastructure engineering</li>
-                        <li className='el'>Infrastructure planning and design for air and rail transport</li>
-                        <li className='el'>IT and Telecom Infrastructure</li>
-                        <li className='el'>Specialization Project (maximum 6 credits)</li>
-                      </ul>
-                    </div>
-
-                  </div>
-                </u>
-              </div>
+              <Link to = "/AcademicProgramms/smart" >List Of Courses</Link>
+              
             </ul>
           </div>
         </div>

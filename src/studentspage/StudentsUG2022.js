@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -10,61 +10,34 @@ import TableRow from '@mui/material/TableRow';
 
 const columns = [
   { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'rollno', label: 'Roll Number', minWidth: 100 },
-  {
-    id: 'email',
-    label: 'Email ID',
-    minWidth: 170
-  }
-];
-
-function createData(name, rollno, email) {
-  return { name, rollno, email };
-}
-
-const rows = [
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
-  createData('Abhimanyu', 'B22CI001', 'dahiya.1@iitj.ac.in'),
+  { id: 'rollNo', label: 'Roll Number', minWidth: 100 },
+  { id: 'email', label: 'Email ID', minWidth: 170 }
 ];
 
 export default function StickyHeadTable() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  const loadData = async () => {
+    try {
+      const response = await fetch("http://localhost:3500/api/displaydataB2022", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+      });
+      const data = await response.json();
+      setRows(data[0]);
+      console.log(data[0]);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -76,7 +49,7 @@ export default function StickyHeadTable() {
   };
 
   return (
-    <div style={{padding:'40px'}} >
+    <div style={{ padding: '40px' }}>
       <Paper sx={{ width: '100%', overflow: 'hidden', padding: '10px' }}>
         <TableContainer sx={{ maxHeight: 440 }}>
           <Table stickyHeader aria-label="sticky table">
@@ -98,14 +71,12 @@ export default function StickyHeadTable() {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => {
                   return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={row.rollNo}>
                       {columns.map((column) => {
                         const value = row[column.id];
                         return (
                           <TableCell key={column.id} align={column.align}>
-                            {column.format && typeof value === 'number'
-                              ? column.format(value)
-                              : value}
+                            {value}
                           </TableCell>
                         );
                       })}
@@ -116,7 +87,7 @@ export default function StickyHeadTable() {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[10,20,30]}
+          rowsPerPageOptions={[10, 20, 30]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}

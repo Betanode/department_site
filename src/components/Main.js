@@ -86,21 +86,21 @@ const Main = () => {
                         <div className="card-body">
                             <h5 className="card-title">Research Highlights</h5>
                             <p className="card-text kk">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/" className="btn btn-primary hmm">Go somewhere</a>
+                            <a href="/" className="btn btn-primary hmm">Click Here</a>
                         </div>
                     </div>
                     <div className="card ndone" style={{ width: "18rem" }}>
                         <div className="card-body">
                             <h5 className="card-title">Seminars and Meetings</h5>
                             <p className="card-text kk">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/" className="btn btn-primary hmm">Go somewhere</a>
+                            <a href="/" className="btn btn-primary hmm">Click Here</a>
                         </div>
                     </div>
                     <div className="card ndone" style={{ width: "18rem" }}>
                         <div className="card-body">
                             <h5 className="card-title">News and Newsletters</h5>
                             <p className="card-text kk">With supporting text below as a natural lead-in to additional content.</p>
-                            <a href="/" className="btn btn-primary hmm">Go somewhere</a>
+                            <a href="/" className="btn btn-primary hmm">Click Here</a>
                         </div>
                     </div>
                 </div>
